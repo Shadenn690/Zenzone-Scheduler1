@@ -60,6 +60,8 @@ class TaskViewModel(private val context: Context) : ViewModel() {
             _completedTasks.value = 0
             _completedTasksTotalTime.value = TimeComponents(0, 0, 0)
             _completedTasksOfTheDay.value = emptyList()
+            val clearedWeeklyTasks = _weeklyCompletedTasks.value.mapValues { emptyList<TaskType>() }
+            _weeklyCompletedTasks.value = clearedWeeklyTasks
             val updatedTasks = _taskList.value.filter { it.completionDate == null }
             _taskList.value = updatedTasks
             saveTasks(updatedTasks)
